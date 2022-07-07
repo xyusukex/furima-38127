@@ -21,23 +21,23 @@
 
 ## items テーブル
 
-| Column                    | Type    | Options     |
-| ------------------------- | ------- | ----------- |
-| item_name                 | string  | null: false |
-| price                     | integer | null: false |
-| delivery_charge           | integer | null: false |
-| explanation               | text    | null: false |
-| category                  | string  | null: false |
-| quality                   | string  | null: false |
-| shipment_source_address   | string  | null: false |
-| shipping_date             | string  | null: false |
-| user                      | string  | null: false, foreign_key: true |
+| Column                    | Type        | Options     |
+| ------------------------- | ----------- | ----------- |
+| item_name                 | string      | null: false |
+| price                     | integer     | null: false |
+| delivery_charge_id        | integer     | null: false |
+| explanation_id            | integer     | null: false |
+| category_id               | integer     | null: false |
+| quality_id                | integer     | null: false |
+| province_id               | integer     | null: false |
+| shipping_date_id          | integer     | null: false |
+| user                      | references  | null: false, foreign_key: true |
 
 
 ### Association
 
 - belongs_to  :user
-- has_one     :purchases
+- has_one     :purchase
 
 ## purchases テーブル
 
@@ -59,11 +59,11 @@
 | town            | string     | null: false |
 | building        | string     |             |
 | city            | string     | null: false |
-| province        | string     | null: false |
-| post_ode        | string     | null: false |
+| province_id     | integer    | null: false |
+| post_code       | string     | null: false |
 | phone_number    | string     | null: false |
-| purchases       | references | null: false, foreign_key: true |
+| purchase        | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :purchases
+- belongs_to :purchase
