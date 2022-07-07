@@ -2,15 +2,16 @@
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| name               | string | null: false |
-| email              | string | null: false |
-| password           | string | null: false |
-| encrypted_password | string | null: false |
-| fullname           | string | null: false |
-| name.kana          | string | null: false |
-| birthday           | date   | null: false |
+| Column             | Type   | Options                  |
+| ------------------ | ------ | ------------------------ |
+| name               | string | null: false              |
+| email              | string | null: false unique: true |
+| encrypted_password | string | null: false              |
+| family_name        | string | null: false              |
+| first_name         | string | null: false              |
+| family_name_kana   | string | null: false              |
+| first_name_kana    | string | null: false              |
+| birthday           | date   | null: false              |
 
 
 ### Association
@@ -22,14 +23,14 @@
 
 | Column                    | Type    | Options     |
 | ------------------------- | ------- | ----------- |
-| item.name                 | string  | null: false |
+| item_name                 | string  | null: false |
 | price                     | integer | null: false |
-| delivery.charge           | integer | null: false |
+| delivery_charge           | integer | null: false |
 | explanation               | text    | null: false |
 | category                  | string  | null: false |
 | quality                   | string  | null: false |
-| shipment.source.address   | string  | null: false |
-| shipping.date             | string  | null: false |
+| shipment_source_address   | string  | null: false |
+| shipping_date             | string  | null: false |
 | user                      | string  | null: false, foreign_key: true |
 
 
@@ -47,20 +48,21 @@
 
 ### Association
 
+- belongs_to :user
 - belongs_to :item
-- has_one :addresses
+- has_one :address
 
 ## addresses テーブル
 
 | Column          | Type       | Options     |
 | --------------- | ---------- | ----------- |
 | town            | string     | null: false |
-| building        | string     | null: false |
+| building        | string     |             |
 | city            | string     | null: false |
 | province        | string     | null: false |
-| post.code       | string     | null: false |
-| phone.number    | integer    | null: false |
-| item            | references | null: false, foreign_key: true |
+| post_ode        | string     | null: false |
+| phone_number    | string     | null: false |
+| purchases       | references | null: false, foreign_key: true |
 
 ### Association
 
