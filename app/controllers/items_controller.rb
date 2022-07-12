@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]
 
   def index
-    # @items = Item.order('created_at DESC')
+    @item = Item.all.includes(:user).order("created_at DESC")
   end
 
   def new
@@ -14,6 +14,7 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to root_path
     else
+      @item = @item.includes(:user)
       render :new
     end
   end
