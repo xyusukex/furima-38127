@@ -17,10 +17,10 @@ class ItemsController < ApplicationController
       @item = @item.includes(:user)
       render :new
     end
+  end
 
-    def show
-      @item = Item.find(params[:id])
-    end
+  def show
+    @item = Item.find(params[:id])
   end
 
   private
