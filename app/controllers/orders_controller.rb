@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
 
   def index
     @item = Item.find(params[:item_id])
-    if @item.user != current_user
+    if @item.user != current_user || @item.order.present?
       @order_address = OrderAddress.new
     else
       redirect_to root_path
